@@ -2,6 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5. The CLI needs to be install to run using a Development Server.
 
+## Goal
+Build an application using whatever tools, components, or third party libraries that you&#39;d like.
+The app should allow a user to search for current weather conditions by city name, zip code, or
+coordinates (GPS, reverse geolocation) using the https://openweathermap.org/api API. The
+application should be organized in a way where new features can be easily added and/or tested
+and that you would be happy to maintain. Be sure to submit documentation on how to run the
+application, including some example inputs.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
