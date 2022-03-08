@@ -1,0 +1,20 @@
+<form [formGroup]="locationGeoForm" (ngSubmit)="onSubmitGeo()">
+  <div>
+	<div>
+	  <label for="long">
+		Longitude
+	  </label>
+	  <input id="long" type="text" formControlName="long" placeholder="38.73197">
+	</div>
+	<div>
+      <label for="lat">
+        Latitude
+      </label>
+      <input id="lat" type="text" formControlName="lat"  placeholder="-90.27821">
+	</div>
+	<p>&nbsp;</p>
+	<div align=center>
+		<button type="submit">Current</button>
+	</div>
+ </div>
+</form>

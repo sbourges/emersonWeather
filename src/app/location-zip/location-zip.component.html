@@ -1,0 +1,8 @@
+<form [formGroup]="locationZipForm" (ngSubmit)="onSubmitZip()">
+  <div>
+    <label for="zip">
+      Zip Code
+    </label>
+    <input id="zip" type="text" formControlName="zip" placeholder="63136">
+  </div>
+</form>
