@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Observable, throwError, of } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+
 import { environment } from '../environments/environment';
 import { GeoCoords } from './model/geocoords';
 import { WeatherInfo } from './model/weatherinfo';
@@ -8,13 +12,16 @@ import { WeatherInfo } from './model/weatherinfo';
 })
 export class OpenWeatherService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getGeo(field:String, value:String) {
+  getGeo(field:String, value:String) : Observable<any> {
+    /** Code to be used once we have the proper appid for that part of the API
     if (field === "city") field="p";
-    let url = `http://api.openweathermap.org/geo/1.0/direct?${field}=${value},US&limit=3&appid=${environment.openweathertoken}`;
+    let url = `http://api.openweathermap.org/geo/1.0/direct?${field}=${value},FL,US&limit=8&appid=${environment.openweathertoken}`;
     console.log(url);
-    return [
+    return this.http.get(url);
+    */
+    return of([
         {
           "name": "London",
           "local_names": {
@@ -130,55 +137,12 @@ export class OpenWeatherService {
           "country": "US",
           "state": "CA"
         }
-      ]
+      ]);
   }
 
-  getWeather(geo : GeoCoords) : any {
-    let url = `http://api.openweathermap.org/data/2.5/weather?lat=${geo.lat}&lon=${geo.long}&unit=imperial&appid=${environment.openweathertoken}`;
+  getWeather(geo : GeoCoords) : Observable<WeatherInfo> {
+    let url = `http://api.openweathermap.org/data/2.5/weather?lat=${geo.lat}&lon=${geo.long}&units=imperial&appid=${environment.openweathertoken}`;
     console.log(url);
-    return {
-      "coord": {
-        "lon": -122.08,
-        "lat": 37.39
-      },
-      "weather": [
-        {
-          "id": 800,
-          "main": "Clear",
-          "description": "clear sky",
-          "icon": "01d"
-        }
-      ],
-      "base": "stations",
-      "main": {
-        "temp": 78.3,
-        "feels_like": 79.6,
-        "temp_min": 62,
-        "temp_max": 85.4,
-        "pressure": 1023,
-        "humidity": 100
-      },
-      "visibility": 16093,
-      "wind": {
-        "speed": 1.5,
-        "deg": 350
-      },
-      "clouds": {
-        "all": 1
-      },
-      "dt": 1560350645,
-      "sys": {
-        "type": 1,
-        "id": 5122,
-        "message": 0.0139,
-        "country": "US",
-        "sunrise": 1560343627,
-        "sunset": 1560396563
-      },
-      "timezone": -25200,
-      "id": 420006353,
-      "name": "Mountain View",
-      "cod": 200
-      }                         
+    return this.http.get(url);
   }
 }

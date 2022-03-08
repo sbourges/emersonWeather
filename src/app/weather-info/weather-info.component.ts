@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Observable, throwError, of } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 import { GeoCoords } from '../model/geocoords';
 import { OpenWeatherService } from 'src/app/open-weather.service';
 import { WeatherInfo } from '../model/weatherinfo';
@@ -11,6 +13,7 @@ import { WeatherInfo } from '../model/weatherinfo';
 export class WeatherInfoComponent implements OnInit {
   private _geo! : GeoCoords;
   weather : WeatherInfo = new WeatherInfo();
+  errorMsg : String = "";
 
   @Input() 
   get geo(): GeoCoords {
@@ -18,7 +21,13 @@ export class WeatherInfoComponent implements OnInit {
   }
   set geo(geo : GeoCoords) {
     this._geo = geo;
-    if (geo) this.weather = this.openWeatherService.getWeather(this._geo);
+    this.errorMsg = "";
+    if (geo) {
+      this.openWeatherService.getWeather(this._geo)
+      .subscribe((item : WeatherInfo) => {
+          this.weather = item;
+      });
+    }
   }
 
   constructor(private openWeatherService : OpenWeatherService) {}

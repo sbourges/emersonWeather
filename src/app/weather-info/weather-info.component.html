@@ -1,4 +1,5 @@
 <div *ngIf="weather != null && weather.main != null" class="card-container">
+	<div>{{errorMsg}}</div>
 	<div>
 		<span class="card">Temp: {{ weather.main?.temp }}</span>
 		<span class="card">Feels Like: {{ weather.main?.feels_like }}</span>

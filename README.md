@@ -1,27 +1,24 @@
 # EmersonWeather
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5. The CLI needs to be install to run using a Development Server.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Observations
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Not closed to being finished. Swallowed too much by choosing Angular that I haven't touched in a while. Got stuck in trying to handle the http error. Should be simple, but eludes me at this time and running out of time. Would have asked someone if possible or taken a break.
 
-## Build
+Base is in place and getting the weather from the Geo location works. When trying to get for city, got error from API related to API Key (tried using curl and postman also with same result). Since it can take days to receive one, didn't complete and just hard coded API return example.
+`http://api.openweathermap.org/geo/1.0/direct?p=Valrico,FL,US&appid=cf002751564a4c78f5f7ed479f1b9ba3`
+```json
+{
+    "cod": 401,
+    "message": "Invalid API key. Please see http://openweathermap.org/faq#error401 for more info."
+}
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Also needed to have the user choose on of the many city/state returned. This would have been a new component shared by city and zip.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Need to add at least unit testing and potentially end to end tests. Normally would have done test first, but realize mid way that I wasn't doing it due to re-learning Angular. Bad estimate or choice of UI. I could have gone for a command line and would have been done in no time.

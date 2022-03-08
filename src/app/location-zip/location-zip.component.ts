@@ -9,7 +9,7 @@ import { GeoCoords } from '../model/geocoords';
   styleUrls: ['./location-zip.component.css']
 })
 export class LocationZipComponent implements OnInit {
- @Output() geo = new EventEmitter<GeoCoords>();
+  @Output() geoEvent = new EventEmitter<GeoCoords>();
   locationZipForm = this.formBuilder.group({
     zip: ''
   });
@@ -20,7 +20,13 @@ export class LocationZipComponent implements OnInit {
   ) {}
 
   onSubmitZip(): void {
-    this.openWeatherService.getGeo('zip', this.locationZipForm.value.zip);
+      console.log(this.locationZipForm.value.zip);
+      this.openWeatherService.getGeo("zip", this.locationZipForm.value.zip)
+      .subscribe((item : any) => {
+          let newGeo = new GeoCoords(item[0].lon, item[0].lat);
+          console.log(newGeo)
+          this.geoEvent.emit(newGeo);
+      });
   }
 
 

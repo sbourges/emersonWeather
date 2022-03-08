@@ -33,8 +33,8 @@
 
   <!-- How to select location for weather info -->
   <div class="card-container" [ngSwitch]="selection.value">
-      <pre *ngSwitchDefault><app-location-city></app-location-city></pre>
-      <pre *ngSwitchCase="'zip'"><app-location-zip></app-location-zip></pre>
+      <pre *ngSwitchDefault><app-location-city (geoEvent)="onGeoChange($event)"></app-location-city></pre>
+      <pre *ngSwitchCase="'zip'"><app-location-zip (geoEvent)="onGeoChange($event)"></app-location-zip></pre>
       <pre *ngSwitchCase="'geo'"><app-location-geo (geoEvent)="onGeoChange($event)"></app-location-geo></pre>
   </div>
   <app-weather-info [geo]="geo"></app-weather-info>
