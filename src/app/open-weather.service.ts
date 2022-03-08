@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, of } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators'
 
 import { environment } from '../environments/environment';
 import { GeoCoords } from './model/geocoords';
@@ -140,9 +140,10 @@ export class OpenWeatherService {
       ]);
   }
 
-  getWeather(geo : GeoCoords) : Observable<WeatherInfo> {
+  getWeather(geo : GeoCoords, handleError: (n: HttpErrorResponse) => any) : Observable<any> {
     let url = `http://api.openweathermap.org/data/2.5/weather?lat=${geo.lat}&lon=${geo.long}&units=imperial&appid=${environment.openweathertoken}`;
     console.log(url);
-    return this.http.get(url);
+    return this.http.get(url).pipe(catchError(handleError));
   }
+
 }

@@ -16,8 +16,6 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Observations
 
-Not closed to being finished. Swallowed too much by choosing Angular that I haven't touched in a while. Got stuck in trying to handle the http error. Should be simple, but eludes me at this time and running out of time. Would have asked someone if possible or taken a break.
-
 Base is in place and getting the weather from the Geo location works. When trying to get for city, got error from API related to API Key (tried using curl and postman also with same result). Since it can take days to receive one, didn't complete and just hard coded API return example.
 `http://api.openweathermap.org/geo/1.0/direct?p=Valrico,FL,US&appid=cf002751564a4c78f5f7ed479f1b9ba3`
 ```json
@@ -27,6 +25,8 @@ Base is in place and getting the weather from the Geo location works. When tryin
 }
 ```
 
-Also needed to have the user choose on of the many city/state returned. This would have been a new component shared by city and zip.
+Also needed to have the user choose one of the many city/state returned. This would have been a new component shared by city and zip.
 
-Need to add at least unit testing and potentially end to end tests. Normally would have done test first, but realize mid way that I wasn't doing it due to re-learning Angular. Bad estimate or choice of UI. I could have gone for a command line and would have been done in no time.
+Can easily add routing to add more menues and functionality. As it grow would need to re-organize file structure as too many component folder would be under app. 
+
+Need to add at least unit testing and potentially end to end tests. Normally would have done test first, but realize mid way that I wasn't doing it being out of shape in TDD mentality.

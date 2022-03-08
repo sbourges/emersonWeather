@@ -18,15 +18,15 @@
   <input type="hidden" #selection>
 
   <span class="card-container">
-    <button class="card card-small" (click)="selection.value = 'city'" tabindex="0">
+    <button class="card card-small" (click)="selection.value = 'city';onGeoMethodChange();" tabindex="0">
       <span>City</span>
     </button>
 
-    <button class="card card-small" (click)="selection.value = 'zip'" tabindex="0">
+    <button class="card card-small" (click)="selection.value = 'zip';onGeoMethodChange();" tabindex="0">
       <span>Zip Code</span>
     </button>
 
-    <button class="card card-small" (click)="selection.value = 'geo'" tabindex="0">
+    <button class="card card-small" (click)="selection.value = 'geo';onGeoMethodChange();" tabindex="0">
       <span>Geo Location</span>
     </button>
   </span>
