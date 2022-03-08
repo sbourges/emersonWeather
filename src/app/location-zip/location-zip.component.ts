@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output  } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { environment } from '../../environments/environment';
+import { OpenWeatherService } from '../open-weather.service';
+import { GeoCoords } from '../model/geocoords';
 
 @Component({
   selector: 'app-location-zip',
@@ -8,19 +9,18 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./location-zip.component.css']
 })
 export class LocationZipComponent implements OnInit {
-
+ @Output() geo = new EventEmitter<GeoCoords>();
   locationZipForm = this.formBuilder.group({
     zip: ''
   });
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private openWeatherService: OpenWeatherService
   ) {}
 
   onSubmitZip(): void {
-    let url = `http://api.openweathermap.org/geo/1.0/direct?zip=${this.locationZipForm.value.zip},US&limit=3&appid=${environment.openweathertoken}`;
-    //let res = this.http.get(url);
-    console.log(url);
+    this.openWeatherService.getGeo('zip', this.locationZipForm.value.zip);
   }
 
 

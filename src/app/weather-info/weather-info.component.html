@@ -1,1 +1,6 @@
-<p>weather-info works!</p>
+<div *ngIf="weather != null && weather.main != null" class="card-container">
+	<div>
+		<span class="card">Temp: {{ weather.main?.temp }}</span>
+		<span class="card">Feels Like: {{ weather.main?.feels_like }}</span>
+	</div>
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GeoCoords } from './model/geocoords';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'emersonWeather';
+  geo! : GeoCoords;
+
+  onGeoChange(geo : GeoCoords) {
+    console.log("Geo Change:", geo);
+    this.geo = geo;
+  }
 }
